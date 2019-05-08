@@ -1,11 +1,8 @@
+# ad1488ad (Jordi Prats 2018-09-06 16:29:42 +0200  9) services:
+# ad1488ad (Jordi Prats 2018-09-06 16:29:42 +0200 10)   'informatica':
+# ad1488ad (Jordi Prats 2018-09-06 16:29:42 +0200 11)     ensure: 'running'
+# ad1488ad (Jordi Prats 2018-09-06 16:29:42 +0200 12)     enable: true
 class informatica::service inherits informatica {
-
-  #
-  validate_bool($informatica::manage_docker_service)
-  validate_bool($informatica::manage_service)
-  validate_bool($informatica::service_enable)
-
-  validate_re($informatica::service_ensure, [ '^running$', '^stopped$' ], "Not a valid daemon status: ${informatica::service_ensure}")
 
   $is_docker_container_var=getvar('::eyp_docker_iscontainer')
   $is_docker_container=str2bool($is_docker_container_var)
@@ -15,7 +12,7 @@ class informatica::service inherits informatica {
   {
     if($informatica::manage_service)
     {
-      service { $informatica::params::service_name:
+      service { $informatica::service_name:
         ensure => $informatica::service_ensure,
         enable => $informatica::service_enable,
       }
