@@ -45,9 +45,17 @@ sudo -u "${INF_RUN_USER}" INFA_HOME="${INF_INSTALL_BASE}/${INF_VERSION}" LD_LIBR
 
 if [ $? -eq 0 ];
 then
-  echo "OK - repo ${INF_REPOSITORY}"
-  exit 0
+  sudo -u "${INF_RUN_USER}" INFA_HOME="${INF_INSTALL_BASE}/${INF_VERSION}" LD_LIBRARY_PATH="${INF_INSTALL_BASE}/${INF_VERSION}/server/bin" ${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/pmrep connect -r "${INF_ADMIN_LISTEN}" -h 127.0.0.1 -o "${INF_ADMIN_LISTEN}" -s "${INF_ADMINUSER_SD}" -n "${INF_ADMINUSER}" -x "${INF_ADMINUSER_PASSWORD}"
+
+  if [ $? -eq 0 ];
+  then
+    echo "OK - connected to repo ${INF_ADMIN_LISTEN}"
+  else
+    echo "FAILED TO CONNECT TO ${INF_REPOSITORY} using localhost"
+    exit 2
+  fi
+
 else
-  echo "FAILED TO CONNECT TO ${INF_REPOSITORY}"
+  echo "FAILED TO CONNECT TO ${INF_REPOSITORY} using domain"
   exit 2
 fi
