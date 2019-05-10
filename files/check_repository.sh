@@ -17,7 +17,7 @@
 # /opt/informatica
 # -bash-4.1$
 
-source /etc/eyp-informatica/global_settings.config
+. /etc/eyp-informatica/global_settings.config
 
 if [ -z "$1" ];
 then
@@ -39,7 +39,7 @@ then
   exit 3
 fi
 
-source $1
+. $1
 
 sudo -u "${INF_RUN_USER}" INFA_HOME="${INF_INSTALL_BASE}/${INF_VERSION}" LD_LIBRARY_PATH="${INF_INSTALL_BASE}/${INF_VERSION}/server/bin" ${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/pmrep connect -r "${INF_REPOSITORY}" -d "${INF_DOMAIN}" -s "${INF_ADMINUSER_SD}" -n "${INF_ADMINUSER}" -x "${INF_ADMINUSER_PASSWORD}"
 
