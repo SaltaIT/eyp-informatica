@@ -23,4 +23,13 @@ class informatica::install inherits informatica {
     content => file("${module_name}/check_repository.sh"),
     require => File['/etc/eyp-informatica'],
   }
+
+  file { '/usr/local/bin/check_nodes_alive':
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    content => file("${module_name}/check_nodes_alive.sh"),
+    require => File['/etc/eyp-informatica'],
+  }
 }

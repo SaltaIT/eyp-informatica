@@ -10,17 +10,23 @@ then
   exit 3
 fi
 
-if [ ! -f "/etc/eyp-informatica/checknodes.config" ];
+if [ ! -f "$1" ];
 then
-  echo "/etc/eyp-informatica/checknodes.config NOT FOUND"
+  echo "unable to read configuration file: $1"
   exit 3
 fi
 
-. /etc/eyp-informatica/checknodes.config
+. $1
 
 if [ -z "${EXPECTED_ALIVE_NODES}" ];
 then
   echo "EXPECTED_ALIVE_NODES not defined"
+  exit 3
+fi
+
+if [ ! -f "${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/infacmd.sh" ];
+then
+  echo "${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/infacmd.sh NOT FOUND"
   exit 3
 fi
 

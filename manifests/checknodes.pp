@@ -9,12 +9,12 @@ define informatica::checknodes(
 
   include ::informatica
 
-  file { "/etc/eyp-informatica/checknodes.config":
+  file { "/etc/eyp-informatica/checknodesalive.config":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
     mode    => '0640',
-    content => template("${module_name}/check_repository_config.erb"),
+    content => template("${module_name}/check_nodes_alive_config.erb"),
     require => Class['::informatica'],
   }
 }
