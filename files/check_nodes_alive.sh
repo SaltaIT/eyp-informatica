@@ -24,6 +24,12 @@ then
   exit 3
 fi
 
+if ! [[ ${EXPECTED_ALIVE_NODES} =~ '^[0-9]+$' ]];
+then
+  echo "ERROR: EXPECTED_ALIVE_NODES is not a number: ${EXPECTED_ALIVE_NODES}" >&2
+  exit 3
+fi
+
 if [ ! -f "${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/infacmd.sh" ];
 then
   echo "${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/infacmd.sh NOT FOUND"
@@ -49,11 +55,11 @@ do
   fi
 done
 
-if [ "${ALIVE_NODES}" -ne "${1}" ];
+if [ "${ALIVE_NODES}" -ne "${EXPECTED_ALIVE_NODES}" ];
 then
-  echo "ERROR: ${ALIVE_NODES} alive nodes, expected: ${1}"
+  echo "ERROR: ${ALIVE_NODES} alive nodes, expected: ${EXPECTED_ALIVE_NODES}"
   exit 2
 else
-  echo "OK: ${ALIVE_NODES} alive nodes, expected: ${1}"
+  echo "OK: ${ALIVE_NODES} alive nodes, expected: ${EXPECTED_ALIVE_NODES}"
   exit 0
 fi
