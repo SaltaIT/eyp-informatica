@@ -1,5 +1,7 @@
 # informatica
 
+**NTTCom-MS/eyp-informatica**: [![Build Status](https://travis-ci.org/NTTCom-MS/eyp-informatica.png?branch=master)](https://travis-ci.org/NTTCom-MS/eyp-informatica)
+
 #### Table of Contents
 
 1. [Overview](#overview)
@@ -42,7 +44,7 @@ management, etc.) this is the time to mention it.
 
 ### Setup Requirements
 
-This module requires pluginsync enabled 
+This module requires pluginsync enabled
 
 ### Beginning with informatica
 
