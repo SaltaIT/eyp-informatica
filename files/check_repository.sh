@@ -29,13 +29,13 @@ fi
 
 if [ ! -f "$1" ];
 then
-  echo "unable to read configuration file: $1"
+  echo "unable to read configuration file: $1" >&2
   exit 3
 fi
 
 if [ ! -f "${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/pmrep" ];
 then
-  echo "ERROR - pmrep not found"
+  echo "ERROR - pmrep not found" >&2
   exit 3
 fi
 

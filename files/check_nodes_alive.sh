@@ -6,13 +6,13 @@
 
 if [ ! -f "/etc/eyp-informatica/global_settings.config" ];
 then
-  echo "/etc/eyp-informatica/global_settings.config NOT FOUND"
+  echo "/etc/eyp-informatica/global_settings.config NOT FOUND" >&2
   exit 3
 fi
 
 if [ ! -f "$1" ];
 then
-  echo "unable to read configuration file: $1"
+  echo "unable to read configuration file: $1" >&2
   exit 3
 fi
 
@@ -20,13 +20,19 @@ fi
 
 if [ -z "${EXPECTED_ALIVE_NODES}" ];
 then
-  echo "EXPECTED_ALIVE_NODES not defined"
+  echo "EXPECTED_ALIVE_NODES not defined" >&2
   exit 3
+fi
+
+if ! [[ "${EXPECTED_ALIVE_NODES}" =~ ^[0-9]+$ ]];
+then
+    echo "EXPECTED_ALIVE_NODES not an integer -->${EXPECTED_ALIVE_NODES}<--"  >&2
+    exit 3
 fi
 
 if [ ! -f "${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/infacmd.sh" ];
 then
-  echo "${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/infacmd.sh NOT FOUND"
+  echo "${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/infacmd.sh NOT FOUND" >&2
   exit 3
 fi
 
@@ -34,8 +40,8 @@ NODES=$(sudo -u "${INF_RUN_USER}" INFA_HOME="${INF_INSTALL_BASE}/${INF_VERSION}"
 
 if [ "$?" -ne 0 ];
 then
-  echo "ERROR getting list of nodes"
-  exit 2
+  echo "ERROR getting list of nodes" >&2
+  exit
 fi
 
 ALIVE_NODES=0
