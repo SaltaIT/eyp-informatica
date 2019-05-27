@@ -24,12 +24,6 @@ then
   exit 3
 fi
 
-if ! [[ ${EXPECTED_ALIVE_NODES} =~ '^[0-9]+$' ]];
-then
-  echo "ERROR: EXPECTED_ALIVE_NODES is not a number: ${EXPECTED_ALIVE_NODES}" >&2
-  exit 3
-fi
-
 if [ ! -f "${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/infacmd.sh" ];
 then
   echo "${INF_INSTALL_BASE}/${INF_VERSION}/server/bin/infacmd.sh NOT FOUND"
