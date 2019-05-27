@@ -1,15 +1,14 @@
 define informatica::checknodes(
-                                $repo_name            = $name,
+                                $domain               = $name,
                                 $adminuser_sd         = 'Native',
                                 $adminuser            = 'Administrator',
                                 $adminuser_password   = 'password',
-                                $domain               = 'inf_domain',
                                 $expected_alive_nodes = '2',
                               ) {
 
   include ::informatica
 
-  file { "/etc/eyp-informatica/checknodesalive.config":
+  file { "/etc/eyp-informatica/checknodesalive_${domain}.config":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
