@@ -32,4 +32,13 @@ class informatica::install inherits informatica {
     content => file("${module_name}/check_nodes_alive.sh"),
     require => File['/etc/eyp-informatica'],
   }
+
+  file { '/usr/local/bin/check_sess_logs':
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    content => file("${module_name}/check_sess_logs.sh"),
+    require => File['/etc/eyp-informatica'],
+  }
 }
