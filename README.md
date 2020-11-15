@@ -1,6 +1,6 @@
 # informatica
 
-**NTTCom-MS/eyp-informatica**: [![Build Status](https://travis-ci.org/NTTCom-MS/eyp-informatica.png?branch=master)](https://travis-ci.org/NTTCom-MS/eyp-informatica)
+**SaltaIT/eyp-informatica**: [![Build Status](https://travis-ci.org/SaltaIT/eyp-informatica.png?branch=master)](https://travis-ci.org/SaltaIT/eyp-informatica)
 
 #### Table of Contents
 
